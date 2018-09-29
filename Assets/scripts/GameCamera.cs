@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameCamera : MonoBehaviour {
 
-	   private Vector3 cameraTarget;
+	private Vector3 cameraTarget;
 
-		private Transform target;
+	private Transform target;
 	// Use this for initialization
 	void Start () {
 		target = GameObject.FindGameObjectWithTag("Player").transform;

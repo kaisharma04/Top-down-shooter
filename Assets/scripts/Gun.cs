@@ -35,23 +35,23 @@ public class Gun : MonoBehaviour {
 
 		if(CanShoot()){
 			
-				Ray ray = new Ray(spawn.position,spawn.forward);
-		        RaycastHit hit;
+			Ray ray = new Ray(spawn.position,spawn.forward);
+		    RaycastHit hit;
 
-	    float shotDistance =20;
-		if(Physics.Raycast(ray, out hit,shotDistance)){
+	    	float shotDistance =20;
+			if(Physics.Raycast(ray, out hit,shotDistance)){
 
 			shotDistance = hit.distance;
 		}
 
-			nextPossibleShootTime = Time.time + secondsBetweenShots;
-			mySource.PlayOneShot(mySound,myVolume);
+		nextPossibleShootTime = Time.time + secondsBetweenShots;
+		mySource.PlayOneShot(mySound,myVolume);
 
-			if(tracer){
-				StartCoroutine("RenderTracer",ray.direction * shotDistance);
-			}
-			Rigidbody newShell = Instantiate(shell,ShellEjectionPoint.position,Quaternion.identity) as Rigidbody;
-			newShell.AddForce(ShellEjectionPoint.forward * Random.Range(150f,200f) + spawn.forward * Random.Range(-10f,10f));
+		if(tracer){
+			StartCoroutine("RenderTracer",ray.direction * shotDistance);
+		}
+		Rigidbody newShell = Instantiate(shell,ShellEjectionPoint.position,Quaternion.identity) as Rigidbody;
+		newShell.AddForce(ShellEjectionPoint.forward * Random.Range(150f,200f) + spawn.forward * Random.Range(-10f,10f));
 	}
 	
   }		
@@ -74,16 +74,16 @@ public class Gun : MonoBehaviour {
 		return CanShoot;
 	}
 
-		IEnumerator RenderTracer(Vector3 hitPoint){
+	IEnumerator RenderTracer(Vector3 hitPoint){
 			
-			tracer.enabled = true;
-			tracer.SetPosition(0,spawn.position);
-			tracer.SetPosition(1,spawn.position + hitPoint);
+		tracer.enabled = true;
+		tracer.SetPosition(0,spawn.position);
+		tracer.SetPosition(1,spawn.position + hitPoint);
 
 
-			yield return null;
-			tracer.enabled = false;
-		}
+		yield return null;
+		tracer.enabled = false;
+	}
 }
 
 
